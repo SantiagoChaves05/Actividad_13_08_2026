@@ -1,8 +1,10 @@
-USUARIOS_DB = {
-    "estudiante@correo.com": {
-        "id": 1,
-        "email": "estudiante@correo.com",
-        "hashed_password": "encriptado_clave123", 
-        "saldo_cuenta": 500000.0
-    }
-}
+from sqlalchemy import Column, Integer, String, Float
+from database import Base
+
+class Usuario(Base):
+    __tablename__ = "usuarios"
+
+    id = Column(Integer, primary_key=True, index=True)
+    email = Column(String, unique=True, index=True)
+    hashed_password = Column(String)
+    saldo_cuenta = Column(Float, default=500000.0)
